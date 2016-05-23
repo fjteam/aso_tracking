@@ -70,7 +70,7 @@ appstore_api.crawl_app_keywords_rank = function (app_list, keywords_list, save_c
 
             if (error)
             {
-                console.log(error);
+                console.error(error)
             }
 
             cb();

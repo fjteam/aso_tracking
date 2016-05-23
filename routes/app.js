@@ -37,8 +37,8 @@ router.get('/app/:appid', function (req, res, next) {
         function (err, result) {
             var tpl_data = result
 
-            console.log(tpl_data.aso_log);
-            
+           // console.log(tpl_data.aso_log);
+
             tpl_data.title = "ASO监控";
 
             /**
