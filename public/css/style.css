@@ -1,0 +1,29 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+li {
+  list-style-type: none;
+}
+
+#add_keywords_div {
+  display: none;
+}
+
+#input_new_keywords {
+  width: 400px;
+  height: 200px;
+}
+
+.del_keywords {
+  margin-right:10px;
+}
+
+.del_app {
+  margin-left:10px;
+}

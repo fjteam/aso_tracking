@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test hprose</title>
+    <script src="/js/hprose-html5.min.js"></script>
+</head>
+<body>
+
+<script type="text/javascript">
+    var client = new hprose.HttpClient(location.protocol + "//" + location.hostname + ":2999/", ["hello"]);
+    client.hello("World!", function(result) {
+        alert(result);
+    }, function(name, err) {
+        alert(err);
+    });
+</script>
+
+
+</body>
+</html>
