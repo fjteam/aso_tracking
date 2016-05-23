@@ -1,14 +1,11 @@
 
 # 关于aso_tracking
 
-用nodejs（express）实现抓去跟踪app在appstore的关键词排名,
+用nodejs（express）实现抓去跟踪app在appstore的关键词排名
 
-可添加多个app
-
-可设置关键词
-
-支持图表曲线显示
-
+* 可添加多个app
+* 可设置关键词
+* 支持图表曲线显示
 
 
 ### 启动脚本:
