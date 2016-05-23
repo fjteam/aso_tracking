@@ -1,0 +1,15 @@
+doctype html
+html
+    head
+        title= title
+        link(rel='stylesheet', href='/css/style.css')
+        script(src="http://cdn.hcharts.cn/jquery/jquery-1.8.3.min.js")
+        script(src="/js/underscore-min.js")
+        script(src="http://cdn.hcharts.cn/highcharts/highcharts.js")
+        script(src="/js/hprose-html5.min.js")
+        script(src="/js/async.min.js")
+    body
+    script.
+        var hprose = new hprose.HttpClient(location.protocol + "//" + location.hostname + ":2999/", ["add_app","del_app","add_keywords","del_keyword"]);
+
+    block content

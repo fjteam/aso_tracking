@@ -1,0 +1,52 @@
+extends layout
+
+block content
+    h1 ASO监控
+
+
+    each app in apps
+        li
+            a(href="/app/#{app.appid}") #{app.name}
+            button.del_app(rel="#{app.appid}" name="#{app.name}") X
+    div
+        br
+        button#add_app 添加APP
+
+    script.
+        $(function () {
+
+
+            $('#add_app').click(function () {
+                var appid = prompt('输入APP的app id', "");
+
+                if (/^[0-9]+$/.test(appid))
+                {
+                    var name = prompt('输入APP的名字', "APP名字") || 'APP名字';
+
+                    if (name)
+                    {
+                        hprose.add_app(appid, name);
+                        location.reload();
+                    }
+
+                }
+                else if (!_.isEmpty(appid)){
+                    alert('输入错误,不是数字');
+                }
+
+            });
+
+            $('.del_app').click(function () {
+                var id = $(this).attr('rel');
+                var name = $(this).attr('name');
+
+                if (confirm('确认删除' + name + '吗?')) {
+                    hprose.del_app(id);
+                    location.reload();
+                }
+
+
+            })
+
+        });
+

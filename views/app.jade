@@ -1,0 +1,104 @@
+extends layout
+
+block content
+    h1 #{appinfo.name}
+
+    div#chart
+
+    div
+        h2 当前搜索排名(#{aso_log_last_update_time})
+        each aso_log in keyword_list_last_rank
+            li
+                button.del_keywords(rel="#{aso_log.keyword}") X
+                !{aso_log.keyword} (#{aso_log.rank})
+
+
+        button#add_keywords 添加关键词
+        div#add_keywords_div
+            textarea#input_new_keywords(placeholder="换行分割或逗号分割")
+            div
+                button#save_keywords 提交
+
+
+
+
+
+    script.
+        $(function () {
+            var appid = #{appinfo.appid};
+
+            $('#chart').highcharts({
+                chart: {
+                    type: 'line',
+                },
+                title: {
+                    text: '#{appinfo.name}',
+                    x: -20 //center
+                },
+                subtitle: {
+                    text: 'Appstore 关键词排名',
+                    x: -20
+                },
+                xAxis: {
+                    categories: !{date_list_json}
+                },
+                yAxis: {
+                    title: {
+                        text: '排名'
+                    },
+                    reversed: true,
+                    min: 1,
+                    max: 50,
+                    plotLines: [{
+                        value: 0,
+                        width: 1,
+                        color: '#808080'
+                    }]
+                },
+                tooltip: {
+                    valueSuffix: '名'
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'middle',
+                    borderWidth: 0
+                },
+                series: !{chart_data_json}
+            });
+
+
+            $('#add_keywords').click(function () {
+                $('#add_keywords_div').show();
+                $('#input_new_keywords').focus();
+                $('#add_keywords').hide();
+            });
+
+            $('#save_keywords').click(function () {
+
+                var keywords = $('#input_new_keywords').val();
+
+                if (!_.isEmpty(keywords)) {
+                    hprose.add_keywords(appid, keywords);
+                    location.reload();
+                }
+
+
+            });
+
+            $('.del_keywords').click(function () {
+                var kw = $(this).attr('rel');
+
+                if (confirm('确认删除 "' + kw + '" 吗? ')) {
+                    if (!_.isEmpty(kw)) {
+                        hprose.del_keyword(appid, kw);
+
+                        location.reload();
+                    }
+                }
+
+
+            })
+
+        });
+
