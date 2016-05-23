@@ -20,6 +20,6 @@
 
     # m h  dom mon dow   command
 
-    30 */12 * * *  curl http://localhost:3000/spider/
+    30 */2 * * *  curl http://localhost:3000/spider/
 
 
