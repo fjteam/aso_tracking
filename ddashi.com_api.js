@@ -67,7 +67,9 @@ appstore_api.crawl_app_keywords_rank = function (app_list, keywords_list, save_c
 
             }
             else {
-                console.log(error + response.statusCode);
+                console.log('----抓取错误--------');
+                console.log(error);
+                console.log('response.statusCode=' + response.statusCode);
             }
 
             cb();
