@@ -37,7 +37,8 @@ appstore_api.crawl_app_keywords_rank = function (app_list, keywords_list, save_c
             method: 'GET',
             gzip: true,
             jar: true,
-            proxy: proxy_list[0]
+            proxy: proxy_list[0],
+            timeout: 10 * 1000  //10秒
         };
 
         console.log('开始请求: ' + url)
@@ -66,10 +67,12 @@ appstore_api.crawl_app_keywords_rank = function (app_list, keywords_list, save_c
                 });
 
             }
-            else {
+            else if (error) {
                 console.log('----抓取错误--------');
                 console.log(error);
-                console.log('response.statusCode=' + response.statusCode);
+                if (!_.isEmpty(response.statusCode)) {
+                    console.log('response.statusCode=' + response.statusCode);
+                }
             }
 
             cb();
