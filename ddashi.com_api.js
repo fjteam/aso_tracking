@@ -48,6 +48,8 @@ appstore_api.crawl_app_keywords_rank = function (app_list, keywords_list, save_c
 
                 if (!error && response.statusCode == 200) {
 
+                    console.log('开始请求: ' + url + ' [200 ok]')
+
                     $ = cheerio.load(body);
 
                     $('.caption > a').each(function (i) {
