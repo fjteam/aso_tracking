@@ -7,6 +7,6 @@ async.mapLimit(arr,2,function(obj,cb)
 {
     console.log(obj)
 
-    
+    arr.push(obj);
     cb()
 })

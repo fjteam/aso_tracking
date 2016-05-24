@@ -42,41 +42,49 @@ appstore_api.crawl_app_keywords_rank = function (app_list, keywords_list, save_c
         };
 
         console.log('开始请求: ' + url)
-        request(options, function (error, response, body) {
 
-            if (!error && response.statusCode == 200) {
+        try {
+            request(options, function (error, response, body) {
 
-                $ = cheerio.load(body);
+                if (!error && response.statusCode == 200) {
 
-                $('.caption > a').each(function (i) {
-                    var href = $(this).attr('href');
+                    $ = cheerio.load(body);
 
-                    var appid = href.match(/\/apps\/.*\/([0-9]+)/)[1];
-                    appid = appid * 1;
+                    $('.caption > a').each(function (i) {
+                        var href = $(this).attr('href');
 
-                    var tmp_app = _.findWhere(app_list, {appid: appid});
-                    if (_.isObject(tmp_app)) {
-                        save_cb({
-                            keyword: keyword_obj.keyword,
-                            appid: tmp_app.appid,
-                            rank: i + 1,
-                            updated: Date.now(),
-                            date: moment().format('Y-M-D')
-                        });
-                    }
-                });
+                        var appid = href.match(/\/apps\/.*\/([0-9]+)/)[1];
+                        appid = appid * 1;
 
-            }
-            else if (error) {
-                console.log('----抓取错误--------');
-                console.log(error);
-                if (!_.isEmpty(response.statusCode)) {
-                    console.log('response.statusCode=' + response.statusCode);
+                        var tmp_app = _.findWhere(app_list, {appid: appid});
+                        if (_.isObject(tmp_app)) {
+                            save_cb({
+                                keyword: keyword_obj.keyword,
+                                appid: tmp_app.appid,
+                                rank: i + 1,
+                                updated: Date.now(),
+                                date: moment().format('Y-M-D')
+                            });
+                        }
+                    });
+
                 }
-            }
+                else if (error) {
+                    console.error('----抓取错误--------');
+                    console.error(error);
+                    if (!_.isEmpty(response.statusCode)) {
+                        console.error('response.statusCode=' + response.statusCode);
+                    }
+                }
 
-            cb();
-        })
+                cb();
+            })
+        }
+        catch(error)
+        {
+            console.error(error);
+        }
+
 
     }, function (err, result) {
         console.log('完成所有请求')
