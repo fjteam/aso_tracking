@@ -30,7 +30,7 @@ var AsoRankSchema = new mongoose.Schema({
     date: String,
     updated: Date,
 });
-AsoRankSchema.index({appid: 1, keyword: 1},{"unique":true,"dropDups":true});
+AsoRankSchema.index({appid: 1, keyword: 1}, {unique: true, dropDups: true});
 
 
 //数据对象
