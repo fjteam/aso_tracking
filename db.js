@@ -14,14 +14,15 @@ var AppSchema = new mongoose.Schema({
     appid: Number,
     name: String
 });
-AppSchema.index({appid: 1});
+AppSchema.index({appid: 1}, {unique: true, dropDups: true});
 
 
 var KeywordSchema = new mongoose.Schema({
     appid: Number,
     keyword: String
 });
-KeywordSchema.index({appid: 1, keyword: 1});
+KeywordSchema.index({appid: 1});
+KeywordSchema.index({appid: 1, keyword: 1}, {unique: true, dropDups: true});
 
 var AsoRankSchema = new mongoose.Schema({
     appid: Number,
@@ -30,7 +31,9 @@ var AsoRankSchema = new mongoose.Schema({
     date: String,
     updated: Date,
 });
-AsoRankSchema.index({appid: 1, keyword: 1}, {unique: true, dropDups: true});
+AsoRankSchema.index({appid: 1});
+AsoRankSchema.index({updated: 1});
+AsoRankSchema.index({appid: 1, keyword: 1});
 
 
 //数据对象
