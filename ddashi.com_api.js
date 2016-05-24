@@ -69,12 +69,9 @@ appstore_api.crawl_app_keywords_rank = function (app_list, keywords_list, save_c
                     });
 
                 }
-                else if (error) {
+                else if (!error && response.statusCode != 200) {
                     console.error('----抓取错误--------');
-                    console.error(error);
-                    if (!_.isEmpty(response.statusCode)) {
-                        console.error('response.statusCode=' + response.statusCode);
-                    }
+                    console.error('response.statusCode=' + response.statusCode);
                 }
 
                 cb();
@@ -82,6 +79,7 @@ appstore_api.crawl_app_keywords_rank = function (app_list, keywords_list, save_c
         }
         catch(error)
         {
+            console.error('----抓取错误--------');
             console.error(error);
         }
 
