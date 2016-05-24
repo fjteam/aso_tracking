@@ -10,7 +10,6 @@ var cheerio = require('cheerio');
 var proxy_list = require('./proxy_list')
 
 
-
 var appstore_api = {};
 
 
@@ -67,9 +66,7 @@ appstore_api.crawl_app_keywords_rank = function (app_list, keywords_list, save_c
                 });
 
             }
-
-            if (error)
-            {
+            else {
                 console.error(error)
             }
 
