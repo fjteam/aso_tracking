@@ -21,7 +21,7 @@ var KeywordSchema = new mongoose.Schema({
     appid: Number,
     keyword: String
 });
-KeywordSchema.index({appid: 1});
+KeywordSchema.index({appid: 1, keyword: 1});
 
 var AsoRankSchema = new mongoose.Schema({
     appid: Number,
@@ -30,7 +30,7 @@ var AsoRankSchema = new mongoose.Schema({
     date: String,
     updated: Date,
 });
-AsoRankSchema.index({appid: 1,keyword:1});
+AsoRankSchema.index({appid: 1, keyword: 1},{"unique":true,"dropDups":true});
 
 
 //数据对象
@@ -81,17 +81,17 @@ db_obj.get_all_keywords = function (cb) {
     });
 }
 
-db_obj.add_keyword = function (appid,keyword) {
-    var new_obj = new KeywordModel({appid:appid,keyword:keyword});
+db_obj.add_keyword = function (appid, keyword) {
+    var new_obj = new KeywordModel({appid: appid, keyword: keyword});
     new_obj.save();
 
-    console.log('添加关键词'+ appid + ' ' +  keyword);
+    console.log('添加关键词' + appid + ' ' + keyword);
 
     return new_obj._id;
 }
 
-db_obj.del_keyword = function (appid,keyword) {
-    KeywordModel.remove({appid: appid, keyword:keyword}, function (err) {
+db_obj.del_keyword = function (appid, keyword) {
+    KeywordModel.remove({appid: appid, keyword: keyword}, function (err) {
         if (err) return handleError(err);
         // removed!
     });
