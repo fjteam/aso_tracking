@@ -57,7 +57,7 @@ router.get('/app/:appid', function (req, res, next) {
                 tmp.data = _.map(tpl_data.date_list, function (date) {
 
                     var found_rank = _.find(tpl_data.aso_log, function (aso_obj) {
-                        return ((aso_obj.keyword == keyword_obj.keyword) && moment(date).format('M-D H:00') == moment(aso_obj.updated).format('M-D H:00'));
+                        return ((aso_obj.keyword == keyword_obj.keyword) && moment(new Date(date)).format('M-D H:00') == moment(new Date(aso_obj.updated)).format('M-D H:00'));
                     });
 
                     return found_rank ? found_rank.rank : null;

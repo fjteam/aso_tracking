@@ -10,7 +10,7 @@ block content
         each aso_log in keyword_list_last_rank
             li
                 button.del_keywords(rel="#{aso_log.keyword}") X
-                !{aso_log.keyword} (#{aso_log.rank})
+                span #{aso_log.keyword} (    #{aso_log.rank} )
 
 
         button#add_keywords 添加关键词

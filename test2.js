@@ -1,15 +1,6 @@
-async.series({
-        one: function(callback){
-            setTimeout(function(){
-                callback(null, 1);
-            }, 200);
-        },
-        two: function(callback){
-            setTimeout(function(){
-                callback(null, 2);
-            }, 100);
-        }
-    },
-    function(err, results) {
-        // results is now equal to: {one: 1, two: 2} 
-    });
+var moment = require('moment')
+
+console.log(Date.parse('2016-05-23 16:00'))
+
+console.log(new Date('2016-05-23 16:00'))
+console.log(new moment(1463990400000).format('Y-M-D H:m:s'))
