@@ -14,11 +14,14 @@ var AppSchema = new mongoose.Schema({
     appid: Number,
     name: String
 });
+AppSchema.index({appid: 1});
+
 
 var KeywordSchema = new mongoose.Schema({
     appid: Number,
     keyword: String
 });
+KeywordSchema.index({appid: 1});
 
 var AsoRankSchema = new mongoose.Schema({
     appid: Number,
@@ -27,6 +30,8 @@ var AsoRankSchema = new mongoose.Schema({
     date: String,
     updated: Date,
 });
+AsoRankSchema.index({appid: 1,keyword:1});
+
 
 //数据对象
 var AppModel = mongoose.model('app', AppSchema);
