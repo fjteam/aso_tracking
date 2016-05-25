@@ -78,9 +78,11 @@ appstore_api.run_queue = function (app_list, queue_list, save_cb) {
                                 date: moment().format('Y-M-D')
                             });
 
-                            db.set_spider_queue_result_ok(url);
+
                         }
                     });
+
+                    db.set_spider_queue_result_ok(url);
 
                 }
                 else if (!error && response.statusCode != 200) {

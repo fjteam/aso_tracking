@@ -148,9 +148,9 @@ db_obj.set_spider_queue_result_ok = function (url) {
         status: 'ok'
     }
 
-    SpiderQueueModel.update({url: url}, update_obj, function (err) {
+    SpiderQueueModel.update({url: url}, update_obj, {multi:true}, function (err) {
 
-    })
+    });
 }
 
 db_obj.set_spider_queue_result_error = function (url, error_msg) {
@@ -160,9 +160,9 @@ db_obj.set_spider_queue_result_error = function (url, error_msg) {
     }
 
 
-    SpiderQueueModel.update({url: url}, update_obj, function (err) {
+    SpiderQueueModel.update({url: url}, update_obj, {multi:true}, function (err) {
 
-    })
+    });
     
 }
 
