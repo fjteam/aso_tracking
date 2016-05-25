@@ -86,7 +86,10 @@ router.get('/app/:appid', function (req, res, next) {
             //排序一下
             tpl_data.chart_data= _.sortBy(tpl_data.chart_data, function(obj)
             {
-                return obj.data[obj.data.length-1];
+                return  _.find(obj.data.reverse(),function(v)
+                {
+                    if (v!=null) return true;
+                });
             });
 
 
