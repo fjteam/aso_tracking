@@ -8,7 +8,7 @@ var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/aso_tracking');
 var async = require('async');
 var _ = require('underscore');
-
+var moment = require('moment')
 
 var AppSchema = new mongoose.Schema({
     appid: Number,
@@ -36,13 +36,15 @@ AsoRankSchema.index({updated: 1});
 AsoRankSchema.index({appid: 1, keyword: 1});
 
 var SpiderQueueScheme = new mongoose.Schema({
-    addtime: Date,
+    dt: String,
     keyword: String,
     url: String,
     status: String,
     last_error: String
 });
-AsoRankSchema.index({status: 1});
+SpiderQueueScheme.index({status: 1});
+SpiderQueueScheme.index({keyword: 1, dt: 1, url:1}, {unique: true, dropDups: true});
+
 
 
 //数据对象
@@ -127,7 +129,7 @@ db_obj.add_spider_queue = function (queue_url_obj) {
     var obj = new SpiderQueueModel({
         keyword:queue_url_obj.keyword,
         url: queue_url_obj.url,
-        addtime: Date.now(),
+        dt: Date.now(),
         status: 'queue',
         last_error:''
     });
@@ -142,16 +144,19 @@ db_obj.get_spider_queue = function (cb) {
 }
 
 db_obj.set_spider_queue_result_ok = function (url) {
-    SpiderQueueModel.remove({url: url}, function (err) {
-        if (err) return handleError(err);
-        // removed!
-    });
+    var update_obj = {
+        status: 'ok',
+        last_error: error_msg
+    }
+
+
+    SpiderQueueModel.update({url: url}, update_obj, function (err) {
+
+    })
 }
 
 db_obj.set_spider_queue_result_error = function (url, error_msg) {
     var update_obj = {
-        addtime: Date.now(),
-        url: url,
         status: 'queue',
         last_error: error_msg
     }
