@@ -54,6 +54,7 @@ router.get('/app/:appid', function (req, res, next) {
 
             tpl_data.date_list_json = JSON.stringify(tpl_data.date_list);
 
+
             tpl_data.chart_data = _.map(tpl_data.keyword_list, function (keyword_obj) {
                 var tmp = {};
                 tmp.name = keyword_obj.keyword;
@@ -81,26 +82,18 @@ router.get('/app/:appid', function (req, res, next) {
 
                 return tmp;
             });
+
+            //排序一下
+            tpl_data.chart_data= _.sortBy(tpl_data.chart_data, function(obj)
+            {
+                return obj.data[obj.data.length-1];
+            });
+
+
             tpl_data.chart_data_json = JSON.stringify(tpl_data.chart_data);
 
 
-            /**
-             * 每个词最后的排名
-             */
-            tpl_data.keyword_list_last_rank = _.groupBy(tpl_data.aso_log, 'keyword');
-
-            tpl_data.keyword_list_last_rank = _.map(tpl_data.keyword_list_last_rank, function (v) {
-                return v.pop();
-            });
-            tpl_data.keyword_list_last_rank = _.sortBy(tpl_data.keyword_list_last_rank, function (v) {
-                return v.rank;
-            });
-
-            _.map(result.keyword_list, function (v) {
-                if (!_.find(tpl_data.keyword_list_last_rank, {keyword: v.keyword})) {
-                    tpl_data.keyword_list_last_rank.push({keyword: v.keyword, rank: '无排名'});
-                }
-            });
+            
 
             //最后更新时间
             if (!_.isEmpty(tpl_data.aso_log)) {
