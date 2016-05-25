@@ -93,7 +93,7 @@ router.get('/app/:appid', function (req, res, next) {
             tpl_data.chart_data_json = JSON.stringify(tpl_data.chart_data);
 
 
-            
+
 
             //最后更新时间
             if (!_.isEmpty(tpl_data.aso_log)) {
