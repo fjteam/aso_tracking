@@ -7,10 +7,19 @@ block content
 
     div
         h2 当前搜索排名(#{aso_log_last_update_time})
-        each aso_log in keyword_list_last_rank
-            li
-                button.del_keywords(rel="#{aso_log.keyword}") X
-                span #{aso_log.keyword} (    #{aso_log.rank} )
+        table.gridtable
+            th 关键词
+                each date in date_list_date
+                    th #{date}
+                th
+            each kw_obj in chart_data
+                tr
+                    td.kw #{kw_obj.name}
+                        each rank in kw_obj.data_date
+                            td=rank
+                    td
+                        button.del_keywords(rel="#{kw_obj.name}") X
+
 
 
         button#add_keywords 添加关键词
