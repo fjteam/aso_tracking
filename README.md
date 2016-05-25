@@ -14,12 +14,12 @@
 
 
 ### 定时抓取需要设置
-建议每两小时一次
+15分钟跑一次抓去队列,2小时内同一个url不重复抓
 
 `crontab -e`
 
     # m h  dom mon dow   command
 
-    30 */2 * * *  curl http://localhost:3000/spider/
+    */15 * * * *  curl http://localhost:3000/spider/
 
 

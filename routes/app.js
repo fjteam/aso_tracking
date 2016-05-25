@@ -37,7 +37,7 @@ router.get('/app/:appid', function (req, res, next) {
         function (err, result) {
             var tpl_data = result
 
-           // console.log(tpl_data.aso_log);
+            // console.log(tpl_data.aso_log);
 
             tpl_data.title = "ASO监控";
 
@@ -81,11 +81,9 @@ router.get('/app/:appid', function (req, res, next) {
                 return v.rank;
             });
 
-            _.map(result.keyword_list,function(v)
-            {
-                if (!_.find(tpl_data.keyword_list_last_rank,{keyword:v.keyword}))
-                {
-                    tpl_data.keyword_list_last_rank.push({keyword:v.keyword,rank:'无排名'});
+            _.map(result.keyword_list, function (v) {
+                if (!_.find(tpl_data.keyword_list_last_rank, {keyword: v.keyword})) {
+                    tpl_data.keyword_list_last_rank.push({keyword: v.keyword, rank: '无排名'});
                 }
             });
 
@@ -98,8 +96,7 @@ router.get('/app/:appid', function (req, res, next) {
             res.render('app', tpl_data);
 
         }
-    )
-    ;
+    );
 
 
 });
