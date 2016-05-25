@@ -129,7 +129,7 @@ db_obj.add_spider_queue = function (queue_url_obj) {
     var obj = new SpiderQueueModel({
         keyword:queue_url_obj.keyword,
         url: queue_url_obj.url,
-        dt: Date.now(),
+        dt: moment().format('Y-M-D H:00'),
         status: 'queue',
         last_error:''
     });
@@ -145,10 +145,8 @@ db_obj.get_spider_queue = function (cb) {
 
 db_obj.set_spider_queue_result_ok = function (url) {
     var update_obj = {
-        status: 'ok',
-        last_error: error_msg
+        status: 'ok'
     }
-
 
     SpiderQueueModel.update({url: url}, update_obj, function (err) {
 
