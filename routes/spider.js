@@ -20,21 +20,20 @@ router.get('/spider', function (req, res, next) {
                         cb(null, data);
                     });
 
-                },
-                spider_queue: function(cb){
-                    db.get_spider_queue(function (data) {
-                        cb(null, data);
-                    });
                 }
             },
             function (err, result) {
 
                 //先添加队列再执行
-                var urls= appstore.get_crawl_urls(result.all_keywords);
-                _.each(urls,db.add_spider_queue)
+                var urls = appstore.get_crawl_urls(result.all_keywords);
+                _.each(urls, db.add_spider_queue)
 
 
-                appstore.run_queue(result.all_apps,result.spider_queue,db.save_aso_log);
+                //运行队列
+                db.get_spider_queue(function (spider_queue) {
+                    appstore.run_queue(result.all_apps, spider_queue, db.save_aso_log);
+                });
+
 
                 //appstore.crawl_app_keywords_rank(result.all_apps, result.all_keywords, db.save_aso_log);
 
