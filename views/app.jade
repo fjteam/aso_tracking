@@ -4,6 +4,7 @@ block content
     h1 #{appinfo.name}
 
     div#chart
+    div#chart2
 
     div
         h2 当前搜索排名(#{aso_log_last_update_time})
@@ -76,6 +77,52 @@ block content
                 series: !{chart_data_json}
             });
 
+
+            //
+            $('#chart2').highcharts({
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: ''
+                },
+                xAxis: {
+                    categories: !{date_list_json}
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'ASO投量'
+                    },
+                    stackLabels: {
+                        enabled: true,
+                        style: {
+                            fontWeight: 'bold',
+                            color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                        }
+                    }
+                },
+                legend: {
+
+                },
+                tooltip: {
+                    headerFormat: '<b>{point.x}</b><br/>',
+                    pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
+                },
+                plotOptions: {
+                    column: {
+                        stacking: 'normal',
+                        dataLabels: {
+                            enabled: true,
+                            color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+                            style: {
+                                textShadow: '0 0 3px black'
+                            }
+                        }
+                    }
+                },
+                series: !{chart_data_json}
+            });
 
             $('#add_keywords').click(function () {
                 $('#add_keywords_div').show();
