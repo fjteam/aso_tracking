@@ -3,7 +3,7 @@
     "name": "aso_tracking",
     "script"      : "./bin/www",
     "watch": ["./"],
-    "ignore_watch" : ["node_modules","**/.svn/**"],
+    "ignore_watch" : ["node_modules","**/.svn/**","**/.git/**"],
     "watch_options": {
       "followSymlinks": false
     },
