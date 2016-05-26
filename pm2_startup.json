@@ -1,7 +1,7 @@
 {
   "apps" : [{
     "name": "aso_tracking",
-    "script"      : "./sbin/www",
+    "script"      : "./bin/www",
     "watch": ["./"],
     "ignore_watch" : ["node_modules","**/.svn/**"],
     "watch_options": {
