@@ -10,7 +10,11 @@
 
 ### 启动脚本:
 
-`npm start`
+* `npm start`
+
+或者使用 pm2模块来启动
+
+*   `pm2 ./pm2_startup.json`
 
 
 ### 定时抓取需要设置
