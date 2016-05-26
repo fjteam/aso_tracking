@@ -1,0 +1,21 @@
+{
+  "apps" : [{
+    "name": "aso_tracking",
+    "script"      : "bin/www",
+    "watch": ["."],
+    "ignore_watch" : ["node_modules","**/.svn/**"],
+    "watch_options": {
+      "followSymlinks": false
+    },
+    "error_file"      : "logs/err.log",
+    "out_file"        : "logs/out.log",
+    "merge_logs"      : true,
+    "log_date_format" : "YYYY-MM-DD HH:mm:ss",
+    "env": {
+      "NODE_ENV": "development"
+    },
+    "env_production" : {
+      "NODE_ENV": "production"
+    }
+  }]
+}
