@@ -62,7 +62,7 @@ router.get('/app/:appid', function (req, res, next) {
                 //日期数据（默认:小时）
                 tmp.data = _.map(tpl_data.date_list, function (date) {
 
-                    var found_rank = _.find(tpl_data.aso_log.reverse(), function (aso_obj) {
+                    var found_rank = _.find(tpl_data.aso_log, function (aso_obj) {
                         return ((aso_obj.keyword == keyword_obj.keyword) && moment(new Date(date)).format('Y-M-D H:00') == moment(new Date(aso_obj.updated)).format('Y-M-D H:00'));
                     });
 
