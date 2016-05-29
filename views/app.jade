@@ -16,7 +16,7 @@ block content
             each kw_obj in chart_data
                 tr
                     td.kw #{kw_obj.name}
-                        each rank in kw_obj.data
+                        each rank in kw_obj.data_date
                             td=rank
                     td
                         button.del_keywords(rel="#{kw_obj.name}") X

@@ -60,7 +60,7 @@ router.get('/app/:appid', function (req, res, next) {
                 tmp.name = keyword_obj.keyword;
 
                 //日期数据（默认:小时）
-                tmp.data = _.map(tpl_data.date_list_date, function (date) {
+                tmp.data = _.map(tpl_data.date_list, function (date) {
 
                     var found_rank = _.find(tpl_data.aso_log.reverse(), function (aso_obj) {
                         return ((aso_obj.keyword == keyword_obj.keyword) && moment(new Date(date)).format('Y-M-D H:00') == moment(new Date(aso_obj.updated)).format('Y-M-D H:00'));
@@ -69,15 +69,15 @@ router.get('/app/:appid', function (req, res, next) {
                     return found_rank ? found_rank.rank : null;
                 });
 
-                // //日期数据(日)
-                // tmp.data_date = _.map(tpl_data.date_list_date, function (date) {
-                //
-                //     var found_rank = _.find(tpl_data.aso_log.reverse(), function (aso_obj) {
-                //         return ((aso_obj.keyword == keyword_obj.keyword) && moment(new Date(date)).format('Y-M-D') == moment(new Date(aso_obj.updated)).format('Y-M-D'));
-                //     });
-                //
-                //     return found_rank ? found_rank.rank : null;
-                // });
+                //日期数据(日)
+                tmp.data_date = _.map(tpl_data.date_list_date, function (date) {
+
+                    var found_rank = _.find(tpl_data.aso_log.reverse(), function (aso_obj) {
+                        return ((aso_obj.keyword == keyword_obj.keyword) && moment(new Date(date)).format('Y-M-D') == moment(new Date(aso_obj.updated)).format('Y-M-D'));
+                    });
+
+                    return found_rank ? found_rank.rank : null;
+                });
 
 
                 return tmp;
