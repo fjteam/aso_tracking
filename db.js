@@ -34,6 +34,7 @@ var AsoRankSchema = new mongoose.Schema({
 AsoRankSchema.index({appid: 1});
 AsoRankSchema.index({updated: 1});
 AsoRankSchema.index({appid: 1, keyword: 1});
+AsoRankSchema.index({appid: 1, keyword: 1, updated: 1});
 
 var SpiderQueueScheme = new mongoose.Schema({
     dt: String,
@@ -43,8 +44,7 @@ var SpiderQueueScheme = new mongoose.Schema({
     last_error: String
 });
 SpiderQueueScheme.index({status: 1});
-SpiderQueueScheme.index({keyword: 1, dt: 1, url:1}, {unique: true, dropDups: true});
-
+SpiderQueueScheme.index({keyword: 1, dt: 1, url: 1}, {unique: true, dropDups: true});
 
 
 //数据对象
@@ -127,11 +127,11 @@ db_obj.get_app_keyword_aso_rank_log = function (appid, keyword, cb) {
 db_obj.add_spider_queue = function (queue_url_obj) {
 
     var obj = new SpiderQueueModel({
-        keyword:queue_url_obj.keyword,
+        keyword: queue_url_obj.keyword,
         url: queue_url_obj.url,
         dt: moment().format('Y-M-D H:00'),
         status: 'queue',
-        last_error:''
+        last_error: ''
     });
 
     obj.save();
@@ -148,7 +148,7 @@ db_obj.set_spider_queue_result_ok = function (url) {
         status: 'ok'
     }
 
-    SpiderQueueModel.update({url: url}, update_obj, {multi:true}, function (err) {
+    SpiderQueueModel.update({url: url}, update_obj, {multi: true}, function (err) {
 
     });
 }
@@ -160,10 +160,10 @@ db_obj.set_spider_queue_result_error = function (url, error_msg) {
     }
 
 
-    SpiderQueueModel.update({url: url}, update_obj, {multi:true}, function (err) {
+    SpiderQueueModel.update({url: url}, update_obj, {multi: true}, function (err) {
 
     });
-    
+
 }
 
 
