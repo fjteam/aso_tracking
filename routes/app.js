@@ -62,21 +62,21 @@ router.get('/app/:appid', function (req, res, next) {
                 //日期数据（默认:小时）
                 tmp.data = _.map(tpl_data.date_list, function (date) {
 
-                    var found_rank = _.find(tpl_data.aso_log, function (aso_obj) {
-                        return ((aso_obj.keyword == keyword_obj.keyword) && moment(new Date(date)).format('Y-M-D H:00') == moment(new Date(aso_obj.updated)).format('Y-M-D H:00'));
-                    });
-
-                    return found_rank ? found_rank.rank : null;
+                    // var found_rank = _.find(tpl_data.aso_log.reverse(), function (aso_obj) {
+                    //     return ((aso_obj.keyword == keyword_obj.keyword) && moment(new Date(date)).format('Y-M-D H:00') == moment(new Date(aso_obj.updated)).format('Y-M-D H:00'));
+                    // });
+                    //
+                    // return found_rank ? found_rank.rank : null;
                 });
 
                 //日期数据(日)
                 tmp.data_date = _.map(tpl_data.date_list_date, function (date) {
 
-                    var found_rank = _.find(tpl_data.aso_log, function (aso_obj) {
-                        return ((aso_obj.keyword == keyword_obj.keyword) && moment(new Date(date)).format('Y-M-D') == moment(new Date(aso_obj.updated)).format('Y-M-D'));
-                    });
+                    // var found_rank = _.find(tpl_data.aso_log.reverse(), function (aso_obj) {
+                    //     return ((aso_obj.keyword == keyword_obj.keyword) && moment(new Date(date)).format('Y-M-D') == moment(new Date(aso_obj.updated)).format('Y-M-D'));
+                    // });
 
-                    return found_rank ? found_rank.rank : null;
+                    // return found_rank ? found_rank.rank : null;
                 });
 
 
@@ -86,10 +86,10 @@ router.get('/app/:appid', function (req, res, next) {
             //排序一下
             tpl_data.chart_data= _.sortBy(tpl_data.chart_data, function(obj)
             {
-                return  _.find(obj.data,function(v)
-                {
-                    if (v!=null) return true;
-                });
+                // return  _.find(obj.data.reverse(),function(v)
+                // {
+                //     if (v!=null) return true;
+                // });
             });
 
 
