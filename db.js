@@ -29,12 +29,16 @@ var AsoRankSchema = new mongoose.Schema({
     keyword: String,
     rank: Number,
     date: String,
+    dt: String,
     updated: Date,
 });
 AsoRankSchema.index({appid: 1});
-AsoRankSchema.index({updated: 1});
-AsoRankSchema.index({appid: 1, keyword: 1});
-AsoRankSchema.index({appid: 1, keyword: 1, updated: 1});
+AsoRankSchema.index({updated: -1});
+AsoRankSchema.index({keyword: 1});
+AsoRankSchema.index({dt: -1});
+AsoRankSchema.index({date: -1});
+AsoRankSchema.index({appid: 1, keyword: 1, dt: -1});
+
 
 var SpiderQueueScheme = new mongoose.Schema({
     dt: String,
@@ -123,6 +127,7 @@ db_obj.get_app_keyword_aso_rank_log = function (appid, keyword, cb) {
         cb(data)
     });
 }
+
 
 db_obj.add_spider_queue = function (queue_url_obj) {
 

@@ -75,7 +75,8 @@ appstore_api.run_queue = function (app_list, queue_list, save_cb) {
                                 appid: tmp_app.appid,
                                 rank: i + 1,
                                 updated: Date.now(),
-                                date: moment().format('Y-M-D')
+                                date: moment().format('Y-M-D'),
+                                dt: moment().format('Y-M-D H:00'),
                             });
 
 
