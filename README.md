@@ -24,6 +24,8 @@
 
     # m h  dom mon dow   command
 
-    */15 * * * *  curl http://localhost:3000/spider/
+    * 8,19 * * *  curl http://localhost:3000/spider/addtask
+
+     */15 * * * *  curl http://localhost:3000/spider/run
 
 
