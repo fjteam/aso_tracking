@@ -28,7 +28,7 @@ router.get('/spider/addtask', function (req, res, next) {
                 var urls = appstore.get_crawl_urls(result.all_keywords);
                 _.each(urls, db.add_spider_queue)
 
-                res.render('spider', {});
+                res.render('spider', {msg:'已添加任务'});
             }
         );
 
@@ -52,7 +52,7 @@ router.get('/spider/run', function (req, res, next) {
                 }
             },
             function (err, result) {
-                
+
 
                 //运行队列
                 db.get_spider_queue(function (spider_queue) {
@@ -62,7 +62,7 @@ router.get('/spider/run', function (req, res, next) {
 
                 //appstore.crawl_app_keywords_rank(result.all_apps, result.all_keywords, db.save_aso_log);
 
-                res.render('spider', {});
+                res.render('spider', {msg:'已发起抓取队列'});
             }
         );
 
