@@ -50,7 +50,7 @@ appstore_api.run_queue = function (app_list, queue_list, save_cb) {
             method: 'GET',
             gzip: true,
             jar: true,
-           // proxy: proxy_list[0],
+            proxy: proxy_list[0],
             timeout: 10 * 1000  //10秒
         };
 
