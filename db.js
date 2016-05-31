@@ -144,26 +144,31 @@ db_obj.get_app_keyword_dt_rank = function (appid, keyword, dt, cb) {
     });
 }
 
-db_obj.get_app_keyword_date_rank = function (appid, keyword, dt, cb) {
-    AsoRankModel.findOne({appid: appid, keyword: keyword, dt: dt}).exec(function (err, data) {
+db_obj.get_app_keyword_date_rank = function (appid, keyword, date, cb) {
+    AsoRankModel.findOne({
+        appid: appid,
+        keyword: keyword,
+        date: {$eq: moment(new Date(date)).format('Y-M-D')}
+    }).exec(function (err, data) {
         if (!_.isEmpty(data)) {
             cb(data.rank);
         }
         else {
             cb(null);
         }
+
     });
 }
 
 db_obj.get_app_aso_rank_log_distinct_dt = function (appid, cb) {
     AsoRankModel.distinct('dt').exec(function (err, data) {
-        cb(data)
+        cb(data.sort())
     });
 }
 
 db_obj.get_app_aso_rank_log_distinct_date = function (appid, cb) {
     AsoRankModel.distinct('date').exec(function (err, data) {
-        cb(data)
+        cb(data.sort())
     });
 }
 
