@@ -24,8 +24,11 @@
 
     # m h  dom mon dow   command
 
+
+    #添加抓取任务,每天2次
     * 8,19 * * *  curl http://localhost:3000/spider/addtask
 
+    #跑抓抓取队列
      */15 * * * *  curl http://localhost:3000/spider/run
 
 
