@@ -113,6 +113,15 @@ router.get('/app/:appid', function (req, res, next) {
                 function (err, results) {
                     console.log(tpl_data.chart_data);
 
+                    //排序一下
+                    tpl_data.chart_data_date= _.sortBy(tpl_data.chart_data_date, function(obj)
+                    {
+                        return  _.find(obj.data.reverse(),function(v)
+                        {
+                            if (v!=null) return true;
+                        });
+                    });
+
 
                     tpl_data.chart_data_json = JSON.stringify(tpl_data.chart_data);
 
