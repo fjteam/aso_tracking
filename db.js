@@ -94,8 +94,8 @@ db_obj.get_app_keywords = function (appid, cb) {
 
 }
 
-db_obj.get_all_keywords = function (cb) {
-    KeywordModel.find().exec(function (err, data) {
+db_obj.get_all_distinct_keywords = function (cb) {
+    KeywordModel.distinct('keyword').exec(function (err, data) {
         cb(data)
     });
 }

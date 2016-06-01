@@ -18,10 +18,10 @@ appstore_api.get_crawl_urls = function (keywords_list) {
 
     var ret = []
 
-    _.map(keywords_list, function (keyword_obj) {
+    _.map(keywords_list, function (keyword) {
         ret.push({
-            keyword: keyword_obj.keyword,
-            url: api_url.replace('%keywords%', encodeURIComponent(keyword_obj.keyword))
+            keyword: keyword,
+            url: api_url.replace('%keywords%', encodeURIComponent(keyword))
         });
     })
 
