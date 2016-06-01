@@ -32,8 +32,10 @@ function add_keywords(appid, keywords, cb) {
         });
 }
 
-function del_keyword(appid, keyword) {
-    return db.del_keyword(appid, keyword);
+function del_keyword(appid, keyword, cb) {
+    db.del_keyword(appid, keyword);
+
+    cb()
 }
 
 
@@ -41,7 +43,7 @@ var server = hprose.Server.create("http://0.0.0.0:2999");
 server.addFunction(add_app);
 server.addFunction(del_app);
 server.addAsyncFunction(add_keywords);
-server.addFunction(del_keyword);
+server.addAsyncFunction(del_keyword);
 
 
 server.start();

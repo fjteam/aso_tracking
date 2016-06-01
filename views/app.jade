@@ -147,9 +147,9 @@ block content
 
                 if (confirm('确认删除 "' + kw + '" 吗? ')) {
                     if (!_.isEmpty(kw)) {
-                        hprose.del_keyword(appid, kw);
-
-                        location.reload();
+                        hprose.del_keyword(appid, kw, function () {
+                            location.reload();
+                        });
                     }
                 }
 
