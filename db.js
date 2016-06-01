@@ -162,13 +162,28 @@ db_obj.get_app_keyword_date_rank = function (appid, keyword, date, cb) {
 
 db_obj.get_app_aso_rank_log_distinct_dt = function (appid, cb) {
     AsoRankModel.distinct('dt').exec(function (err, data) {
-        cb(data.sort())
+
+        //按日期常规排序
+        data = _.sortBy(data,function(v)
+        {
+            return new Date(v);
+        });
+
+        cb(data)
+
     });
 }
 
 db_obj.get_app_aso_rank_log_distinct_date = function (appid, cb) {
     AsoRankModel.distinct('date').exec(function (err, data) {
-        cb(data.sort())
+
+        //按日期常规排序
+        data = _.sortBy(data,function(v)
+        {
+            return new Date(v);
+        });
+
+        cb(data)
     });
 }
 
