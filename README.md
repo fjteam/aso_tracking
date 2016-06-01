@@ -1,7 +1,7 @@
 
 # 关于aso_tracking
 
-用nodejs（express）实现抓去跟踪app在appstore的关键词排名
+用nodejs（express）去抓取跟踪app在appstore的关键词排名
 
 * 可添加多个app
 * 可设置关键词

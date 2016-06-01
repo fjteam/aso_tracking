@@ -15,18 +15,21 @@ function del_app(appid) {
 }
 
 
-function add_keywords(appid, keywords) {
+function add_keywords(appid, keywords, cb) {
 
     //支持逗号分割
     var keywords_list = keywords.split(/[,，\s]/);
 
-    async.mapLimit(keywords_list, 1, function (kw, cb) {
-        kw = kw.replace(/(^\s+)|(\s+$)/g, '');
-        if (/.+/.test(kw) == true) {
-            db.add_keyword(appid, kw)
-        }
-        cb();
-    });
+    async.mapLimit(keywords_list, 5, function (kw, cb) {
+            kw = kw.replace(/(^\s+)|(\s+$)/g, '');
+            if (/.+/.test(kw) == true) {
+                db.add_keyword(appid, kw)
+            }
+            cb();
+        },
+        function (err, results) {
+            cb(results);
+        });
 }
 
 function del_keyword(appid, keyword) {
@@ -37,7 +40,7 @@ function del_keyword(appid, keyword) {
 var server = hprose.Server.create("http://0.0.0.0:2999");
 server.addFunction(add_app);
 server.addFunction(del_app);
-server.addFunction(add_keywords);
+server.addAsyncFunction(add_keywords);
 server.addFunction(del_keyword);
 
 

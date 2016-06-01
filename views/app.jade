@@ -102,9 +102,7 @@ block content
                         }
                     }
                 },
-                legend: {
-
-                },
+                legend: {},
                 tooltip: {
                     headerFormat: '<b>{point.x}</b><br/>',
                     pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
@@ -135,8 +133,10 @@ block content
                 var keywords = $('#input_new_keywords').val();
 
                 if (!_.isEmpty(keywords)) {
-                    hprose.add_keywords(appid, keywords);
-                    location.reload();
+                    hprose.add_keywords(appid, keywords, function () {
+                        location.reload();
+                    });
+
                 }
 
 
