@@ -18,7 +18,6 @@
 
 
 ### 定时抓取需要设置
-建议每15分钟跑一次抓队列 (1小时内同一个url不重复抓)
 
 `crontab -e`
 
@@ -28,7 +27,7 @@
     #添加抓取任务,每天2次
     * 8,19 * * *  curl http://localhost:3000/spider/addtask
 
-    #跑抓抓取队列
+    #每15分钟跑抓取队列
      */15 * * * *  curl http://localhost:3000/spider/run
 
 
