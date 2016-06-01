@@ -187,7 +187,7 @@ db_obj.add_spider_queue = function (queue_url_obj) {
 }
 
 db_obj.get_spider_queue = function (cb) {
-    SpiderQueueModel.find({status: 'queue'}).sort({addtime: 1}).exec(function (err, data) {
+    SpiderQueueModel.find({status: 'queue'}).sort({dt: 1}).exec(function (err, data) {
         cb(data)
     })
 }
